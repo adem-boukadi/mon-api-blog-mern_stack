@@ -4,14 +4,17 @@ var express = require('express');
 
 var router = express.Router();
 
-var articleController = require('../controllers/articleController'); // GET /api/articles -> tous les articles
+var _require = require('../controllers/articleController'),
+    getAllArticles = _require.getAllArticles,
+    getArticleById = _require.getArticleById,
+    createArticle = _require.createArticle,
+    updateArticle = _require.updateArticle,
+    deleteArticle = _require.deleteArticle;
 
-
-router.get('/', articleController.getAllArticles);
-router.get('/:id', articleController.getArticleById); // POST /api/articles -> crée un article avec { "title": "...", "author": "..." }
-
-router.post('/', articleController.createArticle);
+router.get('/', getAllArticles);
+router.get('/:id', getArticleById);
+router.post('/', createArticle);
+router.put('/:id', updateArticle);
+router["delete"]('/:id', deleteArticle);
 module.exports = router;
-router.put('/:id', articleController.updateArticle);
-router["delete"]('/:id', articleController.deleteArticle);
 //# sourceMappingURL=articleRoutes.dev.js.map
